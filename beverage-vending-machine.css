@@ -1,0 +1,30 @@
+#border-line {
+    border-style: solid;
+    border-color: black;
+}
+
+#left-space {
+    border-style: solid;
+    border-color: red;
+}
+
+#right-space {
+    position: relative;
+    border-style: solid;
+    border-color: blue;
+}
+
+#machine-image {
+    width: 100%;
+}
+
+#beverage-list {
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+    position: absolute;
+    top: 11%;
+    left: 15%;
+    width: 310px;
+    height: 497px;
+}
