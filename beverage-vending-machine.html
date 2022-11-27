@@ -1,36 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bootstrap demo</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./beverage-vending-machine.css" />
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="./beverage-vending-machine.css">
-</head>
+    <body>
+        <div id="border-line" class="container">
+            <div class="row">
+                <div id="left-space" class="col">
+                    <button type="button" class="btn btn-outline-primary" onclick="inputMoney(100)">100원 투입</button>
+                    <button type="button" class="btn btn-outline-primary" style="margin-left: 10px" onclick="inputMoney(500)">
+                        500원 투입
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" style="margin-left: 10px" onclick="inputMoney(1000)">
+                        1000원 투입
+                    </button>
 
-<body>
-    <div id="border-line" class="container">
-        <div class="row">
-            <div id="left-space" class="col">
-                <button type="button" class="btn btn-outline-primary">100원 투입</button>
-                <button type="button" class="btn btn-outline-primary">500원 투입</button>
-                <button type="button" class="btn btn-outline-primary">1000원 투입</button>
-            </div>
+                    <div id="money-notification">
+                        <div class="mb-3 row">
+                            <label id="stored-money-label" for="stored-money" class="col-sm-2 col-form-label">자판기에 저장된 돈</label>
+                            <div class="col-sm-8">
+                                <input id="stored-money" class="form-control" type="text" aria-label="readonly input example" readonly />
+                            </div>
+                        </div>
 
-            <div id="right-space" class="col">
-                <img id="machine-image" src="./image/자판기.png" alt="자판기">
-                <div id="beverage-list"></div>
+                        <div class="mb-3 row">
+                            <label id="input-money-label" for="input-money" class="col-sm-2 col-form-label">투입 금액</label>
+                            <div class="col-sm-8">
+                                <input id="input-money" class="form-control" type="text" aria-label="readonly input example" readonly />
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label id="wallet-money-label" for="wallet-money" class="col-sm-2 col-form-label">지갑에 있는 돈</label>
+                            <div class="col-sm-8">
+                                <input id="wallet-money" class="form-control" type="text" aria-label="readonly input example" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="wallet-input-box">
+                        <input type="number" placeholder="당신은 얼마를 가지고 있습니까?" />
+                        <button type="button" onclick="walletInput()">입력</button>
+                    </div>
+
+                    <div id="notification-area" class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">알림</label>
+                        <textarea class="form-control" id="text-area" rows="3" readonly></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="money-reset" onclick="walletMoneyReset()">
+                        지갑에 있는 돈 다시 입력
+                    </button>
+                    <button type="button" class="btn btn-primary" id="reset" onclick="reset()">리셋 버튼</button>
+                </div>
+
+                <div id="right-space" class="col">
+                    <img id="machine-image" src="./image/자판기.png" alt="자판기" />
+                    <div id="beverage-list">
+                        <button id="coke" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('coke')">
+                            코카콜라 (700원, 재고수 <span>5</span>)
+                        </button>
+                        <button id="orageJuice" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('orageJuice')">
+                            오렌지주스 (1200원, 재고수 <span>5</span>)
+                        </button>
+                        <button id="water" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('water')">
+                            물 (700원, 재고수 <span>5</span>)
+                        </button>
+                        <button id="cornTee" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('cornTee')">
+                            옥수수 수염차 (700원, 재고수 <span>5</span>)
+                        </button>
+                        <button id="milkis" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('milkis')">
+                            밀키스 (700원, 재고수 <span>5</span>)
+                        </button>
+                        <button id="coffee" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('coffee')">
+                            커피 (500원, 재고수 <span id="coffee-span">5</span>)
+                        </button>
+                        <button id="trevi" style="margin-top: 20px; margin-left: 10px" onclick="beverageChoice('trevi')">
+                            트레비 (700원, 재고수 <span>5</span>)
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="./beverage-vending-machine.js"></script>
-</body>
-
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"
+        ></script>
+        <script src="./beverage-vending-machine.js"></script>
+    </body>
 </html>

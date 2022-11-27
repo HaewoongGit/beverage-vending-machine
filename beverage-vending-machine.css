@@ -1,21 +1,17 @@
 #border-line {
-    border-style: solid;
-    border-color: black;
-}
-
-#left-space {
-    border-style: solid;
-    border-color: red;
+    margin-top: 20px;
 }
 
 #right-space {
     position: relative;
-    border-style: solid;
-    border-color: blue;
+}
+
+.btn {
+    margin-top: 4%;
 }
 
 #machine-image {
-    width: 100%;
+    width: 90%;
 }
 
 #beverage-list {
@@ -24,7 +20,36 @@
     background-color: white;
     position: absolute;
     top: 11%;
-    left: 15%;
-    width: 310px;
-    height: 497px;
+    left: 14%;
+    width: 43%;
+    height: 65%;
+}
+
+#money-notification {
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+
+#stored-money-label {
+    width: 27%;
+}
+
+#stored-money {
+    width: 30%;
+}
+
+#input-money {
+    width: 30%;
+}
+
+#wallet-money-label {
+    width: 23%;
+}
+
+#wallet-money {
+    width: 30%;
+}
+
+#wallet-input-box > input {
+    width: 60%;
 }
